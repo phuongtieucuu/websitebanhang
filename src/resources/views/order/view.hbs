@@ -1,0 +1,81 @@
+{{>adminheader}}
+<h3>Đơn hàng chờ được xử lí</h3>
+<a href="/admin/order" class="btn btn-primary float-r">Xử lí đơn hàng</a>
+<div class="mt4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Tên</th>
+          <th scope="col">Số điện thoại</th>
+          <th scope="col">Địa chỉ</th>
+          <th scope="col">Chi tiết đơn hàng</th>
+          <th scope="col">Tình trạng</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <th scope="row">{{cong1 @index}} </th>
+          <td>{{this.userId.name}}</td>
+          <td>0{{this.userId.phone}}</td>
+          <td>{{this.userId.address}}</td>
+          <td><a class="btn btn-success" href="/admin/order/{{this._id}}">Xem</a></td>
+          <td><button type="button" class="btn btn-secondary action-all"data-id="{{this._id}}" >Chưa hoàn thành</button></td>
+          <td>
+            <button type="button" class="btn btn-primary delete-all" data-id="{{this._id}}" data-toggle="modal" data-target="#exampleModal">xóa</button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</div>
+
+{{>adminfooter}}
+<form name="deleteformform" method="post"></form>
+<form name="actionall" method="post"></form>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Bạn có muốn xóa đơn hàng
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary actiondelete">Xóa đơn hàng</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const updataAll = document.querySelectorAll('.delete-all')
+  const actionAll = document.querySelectorAll('.action-all')
+  const actiondelete = document.querySelector('.actiondelete')
+  const deleteformform = document.forms['deleteformform']
+  const actionall = document.forms['actionall']
+
+
+  for(let x of actionAll){
+    x.onclick = function(e) {
+      const id = e.target.dataset.id
+      actionall.action = `/admin/order/action/${id}`
+      actionall.submit()
+    }
+  }
+  $('#exampleModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var id = button.data('id') 
+    actiondelete.onclick = function() {
+      deleteformform.action = `/admin/order/delete/${id}`
+      deleteformform.submit()
+    }
+  })
+</script>

@@ -1,0 +1,10 @@
+{{>adminheader}}
+<form method="POST" action="/admin/category/{{data._id}}?_method=PUT">
+  <h3>Sửa danh mục</h3>
+  <div class="form-group">
+    <label for="category">Nhập danh mục</label>
+    <input type="text" class="form-control" name="name" id="category" value="{{data.name}}" placeholder="Enter category">
+  </div>
+  <button type="submit" class="btn btn-primary">Sửa</button>
+</form>
+{{>adminfooter}}

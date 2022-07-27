@@ -1,0 +1,39 @@
+{{>adminheader}}
+<a href="/admin/producttype/add" class="btn btn-primary float-r">Thêm loại sản phẩm</a>
+<div class="mt4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" >Tên loại sản phẩm</th>
+          <th scope="col" colspan="2">Danh mục</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <th scope="row">{{cong1 @index}} </th>
+          <td>{{this.name}}</td>
+          <td>{{this.categoryId.name}}</td>
+          <td>
+            <a href="/admin/producttype/{{this._id}}/update" class="btn btn-primary">sửa</a>
+            <button type="button" class="btn btn-primary delete-all" data-id="{{this._id}}">xóa</button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</div>
+<form method="POST" name="deleteformform"></form>
+<script>
+  const updataAll = document.querySelectorAll('.delete-all')
+  const deleteformform = document.forms['deleteformform']
+  for(let x of updataAll){
+    x.onclick = function(e) {
+      const id = e.target.dataset.id
+      deleteformform.action = `/admin/producttype/${id}/delete?_method=DELETE`
+      deleteformform.submit()
+    }
+  }
+</script>
+{{>adminfooter}}

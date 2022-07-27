@@ -1,0 +1,52 @@
+{{>adminheader}}
+<a href="/admin/product/add" class="btn btn-primary float-r">Thêm sản phẩm</a>
+<div class="mt4">
+    <table class="table striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" >Tên loại sản phẩm</th>
+          <th scope="col" >Danh mục</th>
+          <th scope="col" >Giá</th>
+          <th scope="col" >Ảnh</th>
+          <th scope="col" ></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each data}}
+        <tr>
+          <th scope="row">{{cong1 @index}} </th>
+          <td>{{this.name}}</td>
+          <td>{{this.categoryId.name}}</td>
+          <td>{{this.price}}</td>
+          <td>
+            <img src="/img/{{this._id}}/{{this.img}}" class="view-img" alt="">
+          </td>
+          <td>
+            <a href="/admin/product/update/{{this._id}}" class="btn btn-primary">sửa</a>
+            <button type="button" class="btn btn-primary delete-all" data-id="{{this._id}}">xóa</button>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      {{{pages pagesize  pageindex}}}
+    </ul>
+  </nav>
+</div>
+<form method="POST" name="deleteformform"></form>
+{{>adminfooter}}
+
+<script>
+  const updataAll = document.querySelectorAll('.delete-all')
+  const deleteformform = document.forms['deleteformform']
+  for(let x of updataAll){
+    x.onclick = function(e) {
+      const id = e.target.dataset.id
+      deleteformform.action = `/admin/product/delete/${id}?_method=DELETE`
+      deleteformform.submit()
+    }
+  }
+</script>

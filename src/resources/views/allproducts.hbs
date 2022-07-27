@@ -1,0 +1,23 @@
+{{>header}}
+<div class="row products">
+    {{#each data}}
+    <div class="col-12 col-md-4 p">
+        <a href="/products/category/{{this.slug}}">
+            <img src="/img/{{this._id}}/{{this.img}}" class="p" alt="">
+        </a>
+        <h5>{{this.name}}</h5>
+        <p>{{this.price}} $</p>
+        <a href="/products/category/{{this.slug}}">Xem chi tiết</a>
+    </div>
+    {{/each}}
+</div>
+{{#if ispage}}
+<div class="mt-4">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {{{productpages pagesize  pageindex}}}
+        </ul>
+    </nav>
+</div>
+{{/if}}
+{{>footer}}

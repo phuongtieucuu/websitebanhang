@@ -1,0 +1,14 @@
+{{>adminheader}}
+<form method="POST" action="/admin/producttype/{{data1._id}}?_method=PUT">
+  <h3>Sửa danh mục</h3>
+  <div class="form-group">
+    <label for="category">Chọn danh mục</label> <br>
+    <select name="categoryId" id="category" class="product-control">
+        <option value="{{data1.categoryId._id}}">{{data1.categoryId.name}}</option>
+    </select> <br>
+    <label for="producttype1">Nhập tên loại sản phẩm</label>
+    <input type="text" class="form-control" name="name" id="producttype1" value="{{data1.name}}" placeholder="Enter category">
+  </div>
+  <button type="submit" class="btn btn-primary">Sửa</button>
+</form>
+{{>adminfooter}}

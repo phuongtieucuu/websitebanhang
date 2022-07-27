@@ -1,0 +1,86 @@
+{{>adminheader}}
+<form method="POST" enctype="multipart/form-data">
+  <h3>Thêm sản phẩm</h3>
+  <div class="form-group">
+
+    <label for="category">Chọn danh mục</label> <br>
+    <select name="categoryId" id="category" >
+      <option value="">--Chọn danh mục--</option>
+      {{#each data1}}
+          <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select> <br>
+
+
+    <label for="producttype">Chọn Loại sản phẩm</label> <br>
+    <select name="producttypeId" id="producttype">
+      {{#each data2}}
+          <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select> <br>
+
+    <label for="name">Nhập tên sản phẩm</label>
+    <input type="text" class="form-control product-control" name="name" id="name" placeholder="Enter product">
+    {{#if isErr}}
+      <small id="emailHelp" class="form-text text-muted">{{message}}</small>
+    {{/if}}
+
+    <label for="price">Nhập giá sản phẩm</label>
+    <input type="text" class="form-control product-control" name="price" id="price" placeholder="Enter price product">
+
+    <label for="desc">Ghi chú</label>
+    <textarea id="desc" class="form-control" name="desc" placeholder="Content"></textarea>
+    
+    <label for="imgproduct">Ảnh sản phẩm</label><br>
+    <input type="file"  name="img" id="imgproduct" >
+    <div class="isErrImg"></div>
+    <img src="" class="imgproduct-img" alt="">
+  </div>
+  <button type="submit" class="btn btn-primary addProduct">Thêm</button>
+</form>
+{{>adminfooter}}
+<script>
+    $(document).ready(function() {
+      $('#category').change(function() {
+        $.ajax({
+          url:'/admin/product/getproducttype',
+          type:'GET',
+          data: {
+            id: $('#category').val()
+          }
+        })
+      .then(data => {
+        var html = data.data.map(item => `<option value="${item._id}">${item.name}</option>`)
+        $('#producttype').html(html)
+      })
+      .catch(err => {console.log(err)})
+      })
+
+      $('#imgproduct').change(function() {
+        $(".imgproduct-img").css("display",'block');
+        $(".imgproduct-img").attr("src", URL.createObjectURL(this.files[0]) );
+        $.ajax({
+          url:'/admin/product/getimg',
+          type:'GET',
+          data: {
+            id: $('#imgproduct').val()
+          }
+        })
+      .then(data => {
+        console.log(data)
+        if(data.isErr){
+          var html = `<div  class=" text-danger">${data.message}</div>`
+          $('.isErrImg').html(html)
+          $(".addProduct").prop("disabled", true)
+        }else{
+          var html = ``
+          $('.isErrImg').html(html)
+          $(".addProduct").prop("disabled", false)
+          
+        }
+        })
+      .catch(err => {console.log(err)})
+      })
+
+    });
+</script>

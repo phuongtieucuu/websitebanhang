@@ -1,0 +1,51 @@
+{{>header}}
+{{#if mycart}}
+
+<div class="row">
+    <table class="table striped">
+        <thead>
+            <tr>
+            <th scope="col">Hình ảnh</th>
+            <th scope="col">Tên</th>
+            <th scope="col">Giá</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col"></th>
+            <th scope="col">Tổng</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each mycart}}
+            <tr>
+                <td>
+                    <img class="sp" src="{{this.img}}" alt="">
+                </td>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.qtl}}</td>
+                <td>
+                    <a class="mycart" href="/cart/update/{{this.slug}}?action=remove">trừ</a>
+                    <a class="mycart" href="/cart/update/{{this.slug}}?action=add">thêm</a>
+                </td>
+                <td>{{totalcart this.price this.qtl}}</td>
+                <td><a class="mycart" href="/cart/update/{{this.slug}}?action=clear">xóa</a></td>
+            </tr>
+            {{/each}}
+            <tr>
+                <td colspan="6"></td>
+                <td>Tổng: {{ total mycart}}</td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+                <td><a class="btn btn-danger" href="/cart/delete">Xóa hết</a></td>
+                <td ><a class="btn btn-success" href="/cart/order">Mua</a></td>
+            </tr>
+        </tbody>
+       
+    </table>
+</div>
+{{else}}
+<h3>Hiện tại không có đơn hàng nào</h3>
+{{/if}}
+{{>footer}}
+

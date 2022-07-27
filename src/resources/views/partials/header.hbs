@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/app.css/style.css">
+</head>
+<body>
+  <div class="main">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">ShoppingCart</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+      {{#each category}}
+        <li class="nav-item active">
+          <a class="nav-link" href="/products/{{this.slug}}">{{this.name}} <span class="sr-only">(current)</span></a>
+        </li>
+      {{/each}}
+      
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+        {{#if user}}
+          <a class="nav-link" href="/cart/mycart">Giỏ hàng (
+            {{#if mycart}} 
+              {{mycart.length}}
+            {{else}}
+              0
+            {{/if}}
+            ) </a>
+        </li>
+          <li class="nav-item active"><a class="nav-link" href="/user/logout">Hi: {{name user}} ( longout)</a> </li>
+        {{else}}
+          <li class="nav-item active"><a class="nav-link" href="/user/login">Đăng nhập</a> </li>
+          <li class="nav-item active"><a class="nav-link" href="/user/register">Đăng ký</a> </li>
+        {{/if}}
+        {{#if user}}
+        {{{checkAdmin user}}}
+        {{/if}}
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 col-md-3">
+      <h5>Danh mục</h5>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="/products">Tất cả danh mục</a></li>
+        {{#each category}}
+        <li class="list-group-item"><a href="/products/{{this.slug}}">{{this.name}}</a></li>
+      {{/each}}
+      </ul>
+    </div>
+    <div class="col-12 col-md-1"></div>
+    <div class="col-12 col-md-8">
+    {{#if errors }}
+        {{#each errors }}
+            <p class="alert alert-danger">{{ this.msg }}</p>
+        {{/each}}
+    {{/if}}
+    {{#if isErr }}
+        <p class="alert alert-danger">{{message}}</p>
+    {{/if}}
+    {{#if isSuc }}
+        <p class="alert alert-success">{{message}}</p>
+    {{/if}}
+    {{#if message }}
+      <p class="alert alert-{{message.type}}">{{message.message}}</p>
+    {{/if}}

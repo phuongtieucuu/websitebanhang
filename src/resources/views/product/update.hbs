@@ -1,0 +1,113 @@
+{{>adminheader}}
+<form method="POST" action="/admin/product/update/{{data._id}}?_method=PUT" enctype="multipart/form-data">
+  <h3>Sửa sản phẩm</h3>
+  <div class="form-group">
+    <label for="category">Danh mục</label> <br>
+    <select name="categoryId" id="category" >
+      <option value="{{data.categoryId._id}}">{{data.categoryId.name}}</option>
+    </select> <br>
+
+    <label for="category">Loại sản phẩm</label> <br>
+    <select name="producttypeId" id="producttype">
+      <option value="{{data.producttypeId._id}}">{{data.producttypeId.name}}</option>
+    </select> <br>
+
+
+    <label for="category">Tên sản phẩm</label>
+    <input type="text" class="form-control" name="name" id="category" value="{{data.name}}" placeholder="Enter product">
+
+
+    <label for="price">Giá sản phẩm</label>
+    <input type="text" class="form-control product-control" value="{{data.price}}" name="price" id="price" placeholder="Enter price product">
+
+    <label for="desc">Ghi chú</label>
+    <textarea id="desc" class="form-control" name="desc" placeholder="Content">{{data.desc}}</textarea>
+
+    <label for="imgproduct">Ảnh sản phẩm</label><br>
+    <img src="/img/{{data._id}}/{{data.img}}" class="imgproduct-img1" alt=""> <br>
+    
+    <input type="file"  name="img" id="imgproduct" >
+    <div class="isErrImg"></div>
+    <img src="" class="imgproduct-img" alt="">
+  </div>
+  <button type="submit" class="btn btn-primary addProduct">Sửa</button>
+</form>
+
+<div class="mt-4">
+  <form id="form2" name="box" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="images">Thêm nhiều ảnh</label>
+    <input type="file" class="form-control" id="images" name="images" data-index="{{data._id}}" multiple>
+  </div>
+</form>
+  <div class="d-flex align-items-center flex-wrap" >
+       {{#each data.images}}
+          <div class="box_item">
+            <img src="/img/{{../id}}/box/{{this}}" class="imgproduct-img1" alt="">
+            <a href="/admin/product/deleteboxitem?id={{../id}}&name={{this}}&index={{@index}}">delete</a>
+          </div>
+      {{/each}}
+  </div>
+  
+</div>
+{{>adminfooter}}
+<script>
+const ip = document.getElementById('images')
+const form2 = document.forms['box']
+
+
+
+ ip.onchange = function(e){
+  const index= e.target.dataset.index
+  form2.action = `/admin/product/uploadimgs/${index}`
+  form2.submit()
+
+ }
+ 
+</script>
+<script>
+  $(document).ready(function() {
+    $('#category').change(function() {
+      $.ajax({
+        url:'/admin/product/getproducttype',
+        type:'GET',
+        data: {
+          id: $('#category').val()
+        }
+      })
+    .then(data => {
+      var html = data.data.map(item => `<option value="${item._id}">${item.name}</option>`)
+      $('#producttype').html(html)
+    })
+    .catch(err => {console.log(err)})
+    })
+
+
+    $('#imgproduct').change(function() {
+      $(".imgproduct-img").css("display",'block');
+      $(".imgproduct-img").attr("src", URL.createObjectURL(this.files[0]) );
+      $.ajax({
+        url:'/admin/product/getimg',
+        type:'GET',
+        data: {
+          id: $('#imgproduct').val()
+        }
+      })
+    .then(data => {
+      if(data.isErr){
+        var html = `<div  class=" text-danger">${data.message}</div>`
+        $('.isErrImg').html(html)
+        $(".addProduct").prop("disabled", true)
+      }else{
+        var html = ``
+        $('.isErrImg').html(html)
+        $(".addProduct").prop("disabled", false)
+      }
+      })
+    .catch(err => {console.log(err)})
+    })
+    
+  
+
+  });
+</script>

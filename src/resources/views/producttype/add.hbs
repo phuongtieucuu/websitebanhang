@@ -1,0 +1,17 @@
+{{>adminheader}}
+<form method="POST">
+  <h3>Thêm loại sản phẩm</h3>
+  <div class="form-group">
+    <label for="category">Chọn danh mục</label> <br>
+    <select name="categoryId" id="category">
+      {{#each data}}
+          <option value="{{this._id}}">{{this.name}}</option>
+      {{/each}}
+    </select> <br>
+    <label for="category">Nhập tên loại sản phẩm</label>
+    <input type="text" class="form-control" name="name" id="category" placeholder="Enter category">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Thêm</button>
+</form>
+{{>adminfooter}}

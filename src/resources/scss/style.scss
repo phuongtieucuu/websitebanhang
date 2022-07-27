@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header h1 {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #999;
+}
+.grib {
+    display: flex;
+}
+.list_action {
+    background-color:rgb(177, 169, 169);
+    width: 20%;
+    padding: 50px 0;
+    min-height: 500px;
+}
+.item {
+    padding-left: 20px;
+    margin-top: 30px;
+
+}
+.item span a {
+    text-decoration: none;
+    color: #222;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+.float-r {
+    margin-bottom: 20px;
+}
+#category,#producttype {
+    width: 250px;
+}
+label {
+    margin-top: 20px;
+}
+#desc {
+    width: 100%;
+}
+.content {
+    padding-left: 30px;
+    flex: 1
+}
+.product-control {
+    width: 250px;
+}
+.imgproduct-img,.imgproduct-img1 {
+    margin: 15px;
+    width: 100px;
+    height: 100px;
+}
+.view-img{
+    width: 100px;
+    height: 100px;
+}
+img.p{
+    width: 150px;
+}
+.row.products .p{
+    margin-top: 15px;
+}
+img.sp{
+    width: 100%;
+}
+img.imgproduct-img {
+    display: none;
+}
+table.striped td,table.striped th {
+    vertical-align: middle !important;
+}
+a.mycart{
+    font-size:18px;
+    margin: 0 2px;
+    text-decoration: none
+}
+.width_flex1 {
+    width: 40%;
+}
+li.list-group-item.p {
+    background-color:rgb(177, 169, 169);
+    border: none;
+}
+a.c {
+    text-decoration: none;
+    color: #222;
+}
