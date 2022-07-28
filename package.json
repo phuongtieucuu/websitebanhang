@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js",
-    "watch": "node-sass -w src/resources/scss/style.scss -o src/public/css/app.css"
+    "watch": "node-sass -w src/resources/scss/style.scss -o src/public/css/app.css",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +33,7 @@
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "resize-img": "^2.0.0"
+    "resize-img": "^2.0.0",
+    "serve": "^14.0.1"
   }
 }
