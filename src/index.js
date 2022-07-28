@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+var port = process.env.PORT || 3000
 const handlebars = require('express-handlebars')
 const path = require('path')
 const router = require('./routes/index')
@@ -104,6 +104,6 @@ app.get('*', function(req, res,next){
   next()
 })
 router(app)
-app.listen( process.env.PORT ||port, () => {
+app.listen( port, () => {
   console.log(`Example app listening on port ${port}`)
 })
