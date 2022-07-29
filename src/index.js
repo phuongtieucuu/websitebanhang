@@ -19,7 +19,7 @@ const fileUpload = require('express-fileupload')
 const {ObtoOb,ArtoOb} = require('./until/mongooes')
 const passport = require('passport')
 // app.use(morgan('combined'))
-mongoose.connect('mongodb://localhost/websitebanhang')
+mongoose.connect('mongodb://https://thaihuy-project.herokuapp.com/websitebanhang')
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 hbs.handlebars.registerHelper('cong1', function(index) {
@@ -105,6 +105,6 @@ app.get('*', function(req, res,next){
   next()
 })
 router(app)
-app.listen( port, () => {
+app.listen( process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
