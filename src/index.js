@@ -19,7 +19,7 @@ const fileUpload = require('express-fileupload')
 const {ObtoOb,ArtoOb} = require('./until/mongooes')
 const passport = require('passport')
 // app.use(morgan('combined'))
-mongoose.connect('mongodb://https://thaihuy-project.herokuapp.com/websitebanhang')
+mongoose.connect('mongodb://thaihuy-project.herokuapp.com/websitebanhang')
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 hbs.handlebars.registerHelper('cong1', function(index) {
@@ -61,7 +61,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(fileUpload())
-app.use(session({secret: 'mk', saveUninitialized: false, resave: false,cookie: { secure: true }}));
+app.use(session({secret: 'mk', saveUninitialized: false, resave: false}));
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', './src/resources/views');
