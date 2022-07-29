@@ -61,7 +61,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(fileUpload())
-app.use(session({secret: 'mk', saveUninitialized: false, resave: false}));
+app.use(session({secret: 'mk', saveUninitialized: false, resave: false,cookie: { secure: true }}));
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', './src/resources/views');
