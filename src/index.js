@@ -25,7 +25,8 @@ mongoose
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB Connected....'))
-.catch((err) => console.log(err));
+.catch((err) => console.log(err))
+console.log(1)
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
@@ -37,6 +38,7 @@ app.use(session({secret: 'mk', saveUninitialized: false, resave: false}));
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', './src/resources/views');
+console.log(2)
 
 require('./until/passport')(passport)
 app.use(passport.initialize())
@@ -87,6 +89,7 @@ hbs.handlebars.registerHelper('total', function(arr) {
   }
   return x
 })
+console.log(3)
 
 Category.find({},(err,data)=>{
   if(err){
@@ -111,7 +114,11 @@ app.get('*', function(req, res,next){
 
   next()
 })
+console.log(4)
+
 router(app)
+console.log(5)
+
 app.listen( process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
