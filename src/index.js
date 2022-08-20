@@ -1,3 +1,4 @@
+console.log(0)
 const express = require('express')
 const process  = require('process')
 const app = express()
