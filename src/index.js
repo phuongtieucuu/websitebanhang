@@ -28,6 +28,31 @@ mongoose
 .catch((err) => console.log(err));
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(bodyParser.json());
+app.use(express.urlencoded({extended: true}));
+app.use(expressValidator());
+app.use(cookieParser());
+app.use(fileUpload())
+app.use(session({secret: 'mk', saveUninitialized: false, resave: false}));
+app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+app.set('views', './src/resources/views');
+
+require('./until/passport')(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(function(req, res,next) {
+  if(req.session.message){
+    var message = {
+      type: req.session.message.type,
+      message: req.session.message.message,
+    }
+    res.locals.message = message
+  }
+  req.session.message = null
+  next()
+})
 hbs.handlebars.registerHelper('cong1', function(index) {
   return index +1;
 })
@@ -62,31 +87,7 @@ hbs.handlebars.registerHelper('total', function(arr) {
   }
   return x
 })
-app.use(bodyParser.json());
-app.use(express.urlencoded({extended: true}));
-app.use(expressValidator());
-app.use(cookieParser());
-app.use(fileUpload())
-app.use(session({secret: 'mk', saveUninitialized: false, resave: false}));
-app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
-app.set('view engine', '.hbs');
-app.set('views', './src/resources/views');
 
-require('./until/passport')(passport)
-app.use(passport.initialize())
-app.use(passport.session())
-
-app.use(function(req, res,next) {
-  if(req.session.message){
-    var message = {
-      type: req.session.message.type,
-      message: req.session.message.message,
-    }
-    res.locals.message = message
-  }
-  req.session.message = null
-  next()
-})
 Category.find({},(err,data)=>{
   if(err){
     return console(err)
