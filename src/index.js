@@ -1,7 +1,7 @@
 // const express = require('express')
 // const app = express()
 // const port =  3000
-const handlebars = require('express-handlebars')
+// const handlebars = require('express-handlebars')
 // const path = require('path')
 // const router = require('./routes/index')
 // const mongoose = require('mongoose')
@@ -12,7 +12,7 @@ const handlebars = require('express-handlebars')
 // const expressValidator = require('express-validator')
 // const cookieParser = require('cookie-parser')
 // const session = require('express-session');
-const Category = require('./app/models/category')
+// const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
 // const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
@@ -31,9 +31,9 @@ mongoose
 // app.use(cookieParser());
 // app.use(fileUpload())
 // app.use(session({secret: 'mk', saveUninitialized: true, resave: false,cookie: { secure: false }}));
-app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
-app.set('view engine', '.hbs');
-app.set('views', './src/resources/views');
+// app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
+// app.set('view engine', '.hbs');
+// app.set('views', './src/resources/views');
 // app.use(passport.initialize())
 // app.use(passport.session())
 // require('./until/passport')(passport)
