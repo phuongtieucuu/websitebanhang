@@ -1,8 +1,7 @@
-console.log(0)
 const express = require('express')
 const process  = require('process')
 const app = express()
-const port = process.env.PORT || 3000
+const port =  3000
 const handlebars = require('express-handlebars')
 const path = require('path')
 const router = require('./routes/index')
@@ -15,13 +14,11 @@ const expressValidator = require('express-validator')
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const Category = require('./app/models/category');
-const User = require('./app/models/user');
 const fileUpload = require('express-fileupload')
 const {ObtoOb,ArtoOb} = require('./until/mongooes')
 const passport = require('passport')
 // app.use(morgan('combined'))
-
-console.log(1)
+require('./until/hbs')(hbs)
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
@@ -53,41 +50,6 @@ app.use(function(req, res,next) {
   req.session.message = null
   next()
 })
-hbs.handlebars.registerHelper('cong1', function(index) {
-  return index +1;
-})
-hbs.handlebars.registerHelper('totalcart', function(price,qtl) {
-  return price*qtl;
-})
-hbs.handlebars.registerHelper('pages', function(page, arr) {
-  var a  = Math.ceil(Number(arr/6))
-  var html = []
-  html.push(`<li class="page-item"><a class="page-link" href="/admin/product?page=${ page -1 <= 0 ? 1 : page -1}">Previous</a></li>`)
-  for(var i = 1; i<=a;i++){
-    html.push(`<li class="page-item  ${i === page ? 'active' :''}"><a class="page-link" href="/admin/product?page=${i}">${i}</a></li>`)
-  }
-  html.push(`<li class="page-item"><a class="page-link" href="/admin/product?page=${ page + 1 >= a ? a : page + 1}">Next</a></li>`)
-  return html.join('')
-})
-hbs.handlebars.registerHelper('productpages', function(page, arr) {
-  var a  = Math.ceil(Number(arr/12))
-  var html = []
-  html.push(`<li class="page-item"><a class="page-link" href="/products?page=${ page -1 <= 0 ? 1 : page -1}">Previous</a></li>`)
-  for(var i = 1; i<=a;i++){
-    html.push(`<li class="page-item  ${i === page ? 'active' :''}"><a class="page-link" href="/products?page=${i}">${i}</a></li>`)
-  }
-  html.push(`<li class="page-item"><a class="page-link" href="/products?page=${ page + 1 >= a ? a : page + 1}">Next</a></li>`)
-  return html.join('')
-})
-hbs.handlebars.registerHelper('total', function(arr) {
-  var x = 0
-  for(var a of arr) {
-    var price = a.price*a.qtl*1
-    x += price
-  }
-  return x
-})
-console.log(3)
 Category.find({},(err,data)=>{
   if(err){
     return console(err)
@@ -108,16 +70,10 @@ app.get('*', function(req, res,next){
       return `<li class="nav-item active"><a class="nav-link" href="/admin/category">Trang quản lí</a> </li>`
     }
   })
-
   next()
 })
-console.log(4)
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 router(app)
-console.log(5)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
