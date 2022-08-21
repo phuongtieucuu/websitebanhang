@@ -1,28 +1,25 @@
-console.log(0)
-const express = require('express')
-const process  = require('process')
-const app = express()
-const port = process.env.PORT || 3000
-const handlebars = require('express-handlebars')
-const path = require('path')
-const router = require('./routes/index')
-const mongoose = require('mongoose')
-const methodOverride = require('method-override')
-var morgan = require('morgan')
-const bodyParser = require('body-parser')
-var hbs = handlebars.create({});
-const expressValidator = require('express-validator')
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const Category = require('./app/models/category');
-const User = require('./app/models/user');
-const fileUpload = require('express-fileupload')
-const {ObtoOb,ArtoOb} = require('./until/mongooes')
-const passport = require('passport')
-// app.use(morgan('combined'))
-app.get('/',(req, res) => {
-  res.send('Hello1')
-})
+// console.log(0)
+// const express = require('express')
+// const process  = require('process')
+// const app = express()
+// const port = process.env.PORT || 3000
+// const handlebars = require('express-handlebars')
+// const path = require('path')
+// const router = require('./routes/index')
+// const mongoose = require('mongoose')
+// const methodOverride = require('method-override')
+// var morgan = require('morgan')
+// const bodyParser = require('body-parser')
+// var hbs = handlebars.create({});
+// const expressValidator = require('express-validator')
+// const cookieParser = require('cookie-parser');
+// const session = require('express-session');
+// const Category = require('./app/models/category');
+// const User = require('./app/models/user');
+// const fileUpload = require('express-fileupload')
+// const {ObtoOb,ArtoOb} = require('./until/mongooes')
+// const passport = require('passport')
+// // app.use(morgan('combined'))
 // mongoose
 // .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority',{
 //   useNewUrlParser: true,
@@ -123,6 +120,17 @@ app.get('/',(req, res) => {
 // router(app)
 // console.log(5)
 
-app.listen( process.env.PORT || port, () => {
+// app.listen( process.env.PORT || port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
+const express = require('express')
+const app = express()
+const port =  3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
