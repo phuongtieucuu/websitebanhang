@@ -1,6 +1,6 @@
-// const express = require('express')
-// const app = express()
-// const port =  3000
+const express = require('express')
+const app = express()
+const port =  3000
 // const handlebars = require('express-handlebars')
 // const path = require('path')
 // const router = require('./routes/index')
@@ -45,26 +45,7 @@ mongoose
 //     app.locals.category = ArtoOb(data)
 //   }
 // })
-// router(app)
-// app.listen(process.env.PORT || port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
-const express = require('express')
-const app = express()
-const port = 3000
-
-app.get('/', (req, res) => {
-  Category.find({},function(err, category){
-    res.json(category)
-  })
-})
-
+router(app)
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
-
-
-
-
-
