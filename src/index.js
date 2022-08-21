@@ -12,9 +12,9 @@ const mongoose = require('mongoose')
 // const expressValidator = require('express-validator')
 // const cookieParser = require('cookie-parser')
 // const session = require('express-session');
-// const Category = require('./app/models/category')
+const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
-// const {ObtoOb,ArtoOb} = require('./until/mongooes')
+const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
 // const {check,message} = require('./app/middleware/client')
 mongoose
@@ -38,13 +38,13 @@ app.set('views', './src/resources/views')
 // app.use(passport.session())
 // require('./until/passport')(passport)
 // app.use(message)
-// Category.find({},(err,data)=>{
-//   if(err){
-//     return console.log(err)
-//   }else{
-//     app.locals.category = ArtoOb(data)
-//   }
-// })
+Category.find({},(err,data)=>{
+  if(err){
+    return console.log(err)
+  }else{
+    app.locals.category = ArtoOb(data)
+  }
+})
 const productRouter = require('./routes/product')
 const producttypeRouter = require('./routes/producttype')
 const categoryRouter = require('./routes/category')
@@ -59,7 +59,10 @@ const siteRouter = require('./routes/site')
 // app.use('/admin/order',orderRouter)
 // app.use('/cart',cartRouter)
 // app.use('/user',userRouter)
-app.use('/',siteRouter)
+// app.use('/',siteRouter)
+app.get('/',(req,res) => {
+  res.render('home')
+})
 // router(app)
 
 app.listen(process.env.PORT || port, () => {
