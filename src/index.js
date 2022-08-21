@@ -54,9 +54,7 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  Category.find({},function(err, category){
-    res.json(category)
-  })
+  res.send('Hello1')
 })
 
 app.listen(process.env.PORT || port, () => {
