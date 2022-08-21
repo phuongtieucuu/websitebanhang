@@ -12,11 +12,11 @@ const mongoose = require('mongoose')
 // const expressValidator = require('express-validator')
 // const cookieParser = require('cookie-parser')
 // const session = require('express-session');
-const Category = require('./app/models/category')
+// const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
-const {ObtoOb,ArtoOb} = require('./until/mongooes')
+// const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
-const {check,message} = require('./app/middleware/client')
+// const {check,message} = require('./app/middleware/client')
 mongoose
 .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB Connected....'))
@@ -38,13 +38,13 @@ app.set('views', './src/resources/views')
 // app.use(passport.session())
 // require('./until/passport')(passport)
 // app.use(message)
-Category.find({},(err,data)=>{
-  if(err){
-    return console.log(err)
-  }else{
-    app.locals.category = ArtoOb(data)
-  }
-})
+// Category.find({},(err,data)=>{
+//   if(err){
+//     return console.log(err)
+//   }else{
+//     app.locals.category = ArtoOb(data)
+//   }
+// })
 const productRouter = require('./routes/product')
 const producttypeRouter = require('./routes/producttype')
 const categoryRouter = require('./routes/category')
