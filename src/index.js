@@ -3,7 +3,7 @@ const app = express()
 const port =  3000
 const handlebars = require('express-handlebars')
 // const path = require('path')
-// const router = require('./routes/index')
+const router = require('./routes/index')
 const mongoose = require('mongoose')
 // const methodOverride = require('method-override')
 // var morgan = require('morgan')
@@ -14,7 +14,7 @@ var hbs = handlebars.create({})
 // const session = require('express-session');
 const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
-// const {ObtoOb,ArtoOb} = require('./until/mongooes')
+const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
 // const {message} = require('./app/middleware/client')
 mongoose
