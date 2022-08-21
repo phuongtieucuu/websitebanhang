@@ -59,7 +59,7 @@ const siteRouter = require('./routes/site')
 // app.use('/admin/order',orderRouter)
 // app.use('/cart',cartRouter)
 app.use('/user',userRouter)
-app.use('/',siteRouter)
+// app.use('/',siteRouter)
 // router(app)
 
 app.listen(process.env.PORT || port, () => {
