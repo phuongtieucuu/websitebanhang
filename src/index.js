@@ -2,7 +2,7 @@ console.log(0)
 const express = require('express')
 const process  = require('process')
 const app = express()
-const port = process.env.PORT || 3000
+const port = 3000
 const handlebars = require('express-handlebars')
 const path = require('path')
 const router = require('./routes/index')
@@ -21,15 +21,15 @@ const {ObtoOb,ArtoOb} = require('./until/mongooes')
 const passport = require('passport')
 // app.use(morgan('combined'))
 app.get('/',(req, res) => {
-  res.send('Hello')
+  res.send('Hello1')
 })
-mongoose
-.connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority',{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB Connected....'))
-.catch((err) => console.log(err))
+// mongoose
+// .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority',{
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => console.log('MongoDB Connected....'))
+// .catch((err) => console.log(err))
 // console.log(1)
 // app.use(methodOverride('_method'))
 // app.use(express.static(path.join(__dirname, 'public')))
