@@ -20,13 +20,7 @@ const fileUpload = require('express-fileupload')
 const {ObtoOb,ArtoOb} = require('./until/mongooes')
 const passport = require('passport')
 // app.use(morgan('combined'))
-mongoose
-.connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority',{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB Connected....'))
-.catch((err) => console.log(err))
+
 console.log(1)
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
