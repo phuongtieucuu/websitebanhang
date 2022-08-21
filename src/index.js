@@ -12,7 +12,7 @@ const mongoose = require('mongoose')
 // const expressValidator = require('express-validator')
 // const cookieParser = require('cookie-parser')
 // const session = require('express-session');
-// const Category = require('./app/models/category')
+const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
 // const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
@@ -54,7 +54,9 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello1')
+  Category.find({},function(err, category){
+    res.json(category)
+  })
 })
 
 app.listen(process.env.PORT || port, () => {
