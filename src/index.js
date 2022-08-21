@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const port =  3000
-// const handlebars = require('express-handlebars')
-// const path = require('path')
+const handlebars = require('express-handlebars')
+const path = require('path')
 // const router = require('./routes/index')
 const mongoose = require('mongoose')
 // const methodOverride = require('method-override')
@@ -31,9 +31,9 @@ mongoose
 // app.use(cookieParser());
 // app.use(fileUpload())
 // app.use(session({secret: 'mk', saveUninitialized: true, resave: false,cookie: { secure: false }}))
-// app.engine('.hbs', handlebars.engine({extname: '.hbs'}))
-// app.set('view engine', '.hbs');
-// app.set('views', './src/resources/views')
+app.engine('.hbs', handlebars.engine({extname: '.hbs'}))
+app.set('view engine', '.hbs');
+app.set('views', './src/resources/views')
 // app.use(passport.initialize())
 // app.use(passport.session())
 // require('./until/passport')(passport)
@@ -47,9 +47,7 @@ mongoose
 // })
 // router(app)
 app.get('/',(req, res, next)=>{
-  Category.find({},(err,data)=>{
-    res.json(data)
-  })
+  res.render('home')
 })
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
