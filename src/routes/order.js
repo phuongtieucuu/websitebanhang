@@ -6,9 +6,9 @@ const  {check }  = require('.././app/middleware/client')
 
 router.post('/delete/:id',OrderController.deleteOrder)
 router.post('/action/:id',OrderController.actionOrder)
-router.get('/showaction',check,OrderController.showactionOrder)
-router.get('/:id',check,OrderController.showOrder)
-router.get('/',check,OrderController.show)
+router.get('/showaction', OrderController.showactionOrder)
+router.get('/:id',OrderController.showOrder)
+router.get('/',OrderController.show)
 
 
 
