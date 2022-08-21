@@ -130,13 +130,11 @@ const port =  3000
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
-// mongoose.connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority',(err)=>{
-//   if(err){
-//     console.log("Mongo Err")
-//   }else{
-//     console.log("Mongo Success")
-//   }
-// })
+
+mongoose
+  .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB Connected....'))
+  .catch((err) => console.log(err));
 console.log(1)
 
 app.listen(process.env.PORT || port, () => {
