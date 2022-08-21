@@ -1,8 +1,5 @@
 const Category = require('../models/category');
-const Producttype = require('../models/producttypes');
 const Product = require('../models/product');
-var formidable = require('formidable');
-const fs = require('fs');
 const {ObtoOb,ArtoOb} = require('../../until/mongooes')
 
 class SiteController {

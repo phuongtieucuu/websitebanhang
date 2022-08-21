@@ -8,13 +8,13 @@ const mongoose = require('mongoose')
 // const methodOverride = require('method-override')
 // var morgan = require('morgan')
 // // const bodyParser = require('body-parser')
-var hbs = handlebars.create({})
+// var hbs = handlebars.create({})
 // const expressValidator = require('express-validator')
 // const cookieParser = require('cookie-parser')
 // const session = require('express-session');
-const Category = require('./app/models/category')
+// const Category = require('./app/models/category')
 // const fileUpload = require('express-fileupload')
-const {ObtoOb,ArtoOb} = require('./until/mongooes')
+// const {ObtoOb,ArtoOb} = require('./until/mongooes')
 // const passport = require('passport')
 // const {message} = require('./app/middleware/client')
 mongoose
@@ -38,13 +38,13 @@ app.set('views', './src/resources/views')
 // app.use(passport.session())
 // require('./until/passport')(passport)
 // app.use(message)
-Category.find({},(err,data)=>{
-  if(err){
-    return console.log(err)
-  }else{
-    app.locals.category = ArtoOb(data)
-  }
-})
+// Category.find({},(err,data)=>{
+//   if(err){
+//     return console.log(err)
+//   }else{
+//     app.locals.category = ArtoOb(data)
+//   }
+// })
 router(app)
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
