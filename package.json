@@ -33,7 +33,6 @@
     "nodemon": "^2.0.19",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "resize-img": "^2.0.0",
-    "serve": "^14.0.1"
+    "resize-img": "^2.0.0"
   }
 }
