@@ -2,10 +2,9 @@ const Category = require('../models/category');
 const Producttype = require('../models/producttypes');
 const Product = require('../models/product');
 const formidable = require('formidable');
-const fs = require('fs');
 const {ObtoOb,ArtoOb} = require('../../until/mongooes')
 const mkdirp = require('mkdirp');
-const { FALSE } = require('node-sass');
+const  fs = require('fs')
 class ProductController {
     // [get] /product
     show(req, res, next) {
@@ -81,10 +80,20 @@ class ProductController {
                             console.log(err)
                             return res.json(err)
                         } else{
-                            mkdirp.sync('/Users/Huy/websitebanhang/backend/src/public/img/'+ product._id )
-                            mkdirp.sync('/Users/Huy/websitebanhang/backend/src/public/img/'+ product._id +'/' + 'box' )
+                            fs.mkdir('./src/public/img/'+ product._id, (err) => {
+                                if (err) {
+                                    throw err;
+                                }
+                                console.log("Directory is created.");
+                            });
+                            fs.mkdir('./src/public/img/'+ product._id+'/' + 'box', (err) => {
+                                if (err) {
+                                    throw err;
+                                }
+                                console.log("Directory is created.");
+                            });
                             if(img){
-                                var newpath = 'C:/Users/Huy/websitebanhang/backend/src/public/img/'+ product._id +'/'+ img
+                                var newpath = './src/public/img/'+ product._id +'/'+ img
                                 req.files.img.mv(newpath,function(err){
                                     if(err){ return res.json(err)}
                                 })
@@ -154,9 +163,9 @@ class ProductController {
                         Product.updateOne({_id: req.params.id},req.body, (err,data)=>{
                             if(err){return console.log(err)}
                             if(img){
-                                var filePath = `C:/Users/Huy/websitebanhang/backend/src/public/img/${p._id}/${p.img}`; 
+                                var filePath = `./src/public/img/${p._id}/${p.img}`; 
                                 fs.unlinkSync(filePath)
-                                var newpath = 'C:/Users/Huy/websitebanhang/backend/src/public/img/'+ p._id +'/'+ img
+                                var newpath = './src/public/img/'+ p._id +'/'+ img
                                 req.files.img.mv(newpath,function(err){
                                     if(err){ return res.json(err)}
                                 })
@@ -209,11 +218,15 @@ class ProductController {
     
     // [delete] /product/:id/delete
     delete(req, res, next){
-        var filePath = `C:/Users/Huy/websitebanhang/backend/src/public/img/${req.params.id}`; 
+        var filePath = `./src/public/img/${req.params.id}`; 
         fs.rmdir(filePath, { recursive: true },(err)=>{
             if(err){return console.log(err)}
             Product.deleteOne({_id: req.params.id})
                 .then(()=>{
+                    req.session.message={
+                        type: 'success',
+                        message:'Xóa thành công'
+                    }
                     res.redirect('back')
                 })
                 .catch(err=> next(err))
@@ -227,14 +240,14 @@ class ProductController {
                 var newarr = req.files.images.name
                 console.log(newarr)
                 if(newarr){
-                    var newpath1 = 'C:/Users/Huy/websitebanhang/backend/src/public/img/'+ data._id +'/'+ 'box' +'/'+ newarr
+                    var newpath1 = './src/public/img/'+ data._id +'/'+ 'box' +'/'+ newarr
                     req.files.images.mv(newpath1,function(err){
                         if(err){ return res.json(err)}
                     })
                     data.images.push(newarr)
                 }else {
                     req.files.images.map(item=>{
-                        var newpath = 'C:/Users/Huy/websitebanhang/backend/src/public/img/'+ data._id +'/'+ 'box' +'/'+item.name
+                        var newpath = './src/public/img/'+ data._id +'/'+ 'box' +'/'+item.name
                         item.mv(newpath,function(err){
                             if(err){ return res.json(err)}
                         })
@@ -254,7 +267,7 @@ class ProductController {
     deleteboxitem(req, res, next){
         Product.findOne({_id: req.query.id},(err,data)=>{
             if(err){ return res.json(err)}
-            var filePath = `C:/Users/Huy/websitebanhang/backend/src/public/img/${data._id}/box/${req.query.name}`; 
+            var filePath = `./src/public/img/${data._id}/box/${req.query.name}`; 
             fs.unlinkSync(filePath)
             data.images.splice(req.query.index,1)
             Product.updateOne({_id: req.query.id},{images:data.images},(err,product)=>{

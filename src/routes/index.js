@@ -9,10 +9,10 @@ const  {check }  = require('.././app/middleware/client')
 
 
 function router(app) {
-    app.use('/admin/product',check,productRouter)
-    app.use('/admin/producttype',check,producttypeRouter)
-    app.use('/admin/category',check,categoryRouter)
-    app.use('/admin/order',check,orderRouter)
+    app.use('/admin/product',productRouter)
+    app.use('/admin/producttype',producttypeRouter)
+    app.use('/admin/category',categoryRouter)
+    app.use('/admin/order',orderRouter)
     app.use('/cart',cartRouter)
     app.use('/user',userRouter)
     app.use('/',siteRouter)

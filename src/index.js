@@ -28,6 +28,9 @@ mongoose
 .then(() => console.log('MongoDB Connected....'))
 .catch((err) => console.log(err))
 console.log(1)
+app.get('/',(req, res) => {
+  res.send('Hello')
+})
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
