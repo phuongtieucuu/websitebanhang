@@ -5,18 +5,17 @@ const {ObtoOb,ArtoOb} = require('../../until/mongooes')
 class SiteController {
     //[get] /
     home(req, res, next) {
-        res.render('home')
-        // Product.find({})
-        //     .limit(6)
-        //     .sort({
-        //         createdAt: 'desc'
-        //     })
-        //     .then(data=>{
-        //         res.render('allproducts',{
-        //             data: ArtoOb(data)
-        //         })
-        //     })
-        //     .catch(err=> next(err))
+        Product.find({})
+            .limit(6)
+            .sort({
+                createdAt: 'desc'
+            })
+            .then(data=>{
+                res.render('allproducts',{
+                    data: ArtoOb(data)
+                })
+            })
+            .catch(err=> next(err))
     }
     //[get] /products
     products(req, res, next) {

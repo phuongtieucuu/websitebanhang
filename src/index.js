@@ -3,8 +3,9 @@ const app = express()
 const port =  3000
 const handlebars = require('express-handlebars')
 const path = require('path')
-const router = require('./routes/index')
+// const router = require('./routes/index')
 const mongoose = require('mongoose')
+const siteRouter = require('./routes/site')
 // const methodOverride = require('method-override')
 // var morgan = require('morgan')
 // // const bodyParser = require('body-parser')
@@ -45,7 +46,8 @@ app.set('views', './src/resources/views')
 //     app.locals.category = ArtoOb(data)
 //   }
 // })
-router(app)
+app.use('/',siteRouter)
+// router(app)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
