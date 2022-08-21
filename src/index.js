@@ -5,7 +5,7 @@ const handlebars = require('express-handlebars')
 const path = require('path')
 // const router = require('./routes/index')
 const mongoose = require('mongoose')
-const methodOverride = require('method-override')
+// const methodOverride = require('method-override')
 // var morgan = require('morgan')
 // // const bodyParser = require('body-parser')
 // var hbs = handlebars.create({})
@@ -23,7 +23,7 @@ mongoose
 .catch((err) => console.log(err))
 // require('./until/hbs')(hbs)
 // app.use(morgan('combined'))
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 // // app.use(bodyParser.json());
 // app.use(express.urlencoded({extended: true}));
