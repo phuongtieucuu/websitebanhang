@@ -33,5 +33,14 @@ module.exports = function(hbs){
         }
         return x
     })
+    hbs.handlebars.registerHelper('name', function(name) {
+        return name.name
+      })
+    
+      hbs.handlebars.registerHelper('checkAdmin', function(user) {
+        if(user.admin ===1 ) {
+          return `<li class="nav-item active"><a class="nav-link" href="/admin/category">Trang quản lí</a> </li>`
+        }
+      })
 
 }

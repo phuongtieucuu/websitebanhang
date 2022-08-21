@@ -12,7 +12,7 @@ function router(app) {
     app.use('/admin/product',productRouter)
     app.use('/admin/producttype',producttypeRouter)
     app.use('/admin/category',categoryRouter)
-    app.use('/admin/order',orderRouter)
+    app.use('/admin/order',check,orderRouter)
     app.use('/cart',cartRouter)
     app.use('/user',userRouter)
     app.use('/',siteRouter)
