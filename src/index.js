@@ -4,7 +4,7 @@
 // const handlebars = require('express-handlebars')
 // const path = require('path')
 // const router = require('./routes/index')
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 // const methodOverride = require('method-override')
 // var morgan = require('morgan')
 // // const bodyParser = require('body-parser')
