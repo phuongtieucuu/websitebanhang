@@ -26,9 +26,9 @@ app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 // app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}))
-app.use(expressValidator());
-app.use(cookieParser());
-app.use(fileUpload())
+// app.use(expressValidator())
+// app.use(cookieParser())
+// app.use(fileUpload())
 app.set('trust proxy', 1)
 app.use(session({secret: 'mk', saveUninitialized: true, resave: false,cookie: { secure: true }}))
 app.use(passport.initialize())
@@ -40,13 +40,13 @@ require('./until/passport')(passport)
 require('./until/hbs')(hbs)
 app.use(message)
 
-Category.find({},(err,data)=>{
-  if(err){
-    return console.log(err)
-  }else{
-    app.locals.category = ArtoOb(data)
-  }
-})
+// Category.find({},(err,data)=>{
+//   if(err){
+//     return console.log(err)
+//   }else{
+//     app.locals.category = ArtoOb(data)
+//   }
+// })
 // const productRouter = require('./routes/product')
 // const producttypeRouter = require('./routes/producttype')
 // const categoryRouter = require('./routes/category')
