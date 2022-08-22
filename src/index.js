@@ -21,7 +21,6 @@ mongoose
 .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB Connected....'))
 .catch((err) => console.log(err))
-require('./until/hbs')(hbs)
 // app.use(morgan('combined'))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -30,14 +29,17 @@ app.use(express.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use(cookieParser());
 app.use(fileUpload())
-app.use(session({secret: 'mk', saveUninitialized: true, resave: false,cookie: { secure: false }}))
+app.set('trust proxy', 1)
+app.use(session({secret: 'mk', saveUninitialized: true, resave: false,cookie: { secure: true }}))
+app.use(passport.initialize())
+app.use(passport.session())
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}))
 app.set('view engine', '.hbs');
 app.set('views', './src/resources/views')
-app.use(passport.initialize())
-app.use(passport.session())
 require('./until/passport')(passport)
+require('./until/hbs')(hbs)
 app.use(message)
+
 Category.find({},(err,data)=>{
   if(err){
     return console.log(err)
