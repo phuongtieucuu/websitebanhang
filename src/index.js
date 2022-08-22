@@ -3,7 +3,6 @@ const app = express()
 const port =  3000
 // const handlebars = require('express-handlebars')
 // const path = require('path')
-// const router = require('./routes/index')
 const mongoose = require('mongoose')
 // const methodOverride = require('method-override')
 // var morgan = require('morgan')
@@ -54,9 +53,9 @@ mongoose
 // const cartRouter = require('./routes/cart')
 // const userRouter = require('./routes/user')
 // const siteRouter = require('./routes/site')
-app.get('/',(req,res)=>{
-  res.send('Hello world')
-})
+// app.get('/',(req,res)=>{
+//   res.send('Hello world')
+// })
 // app.use('/admin/product',productRouter)
 // app.use('/admin/producttype',producttypeRouter)
 // app.use('/admin/category',categoryRouter)
@@ -65,6 +64,7 @@ app.get('/',(req,res)=>{
 // app.use('/user',userRouter)
 // app.use('/',siteRouter)
 // router(app)
+require('./routes/index')(app)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)

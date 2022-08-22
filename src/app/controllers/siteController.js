@@ -5,7 +5,7 @@ const {ObtoOb,ArtoOb} = require('../../until/mongooes')
 class SiteController {
     //[get] /
     home(req, res, next) {
-        res.send('home')
+        res.send('Hello world')
         // Product.find({})
         //     .limit(6)
         //     .sort({
