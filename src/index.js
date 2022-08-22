@@ -53,15 +53,17 @@ mongoose
 // const orderRouter = require('./routes/order')
 // const cartRouter = require('./routes/cart')
 // const userRouter = require('./routes/user')
-const siteRouter = require('./routes/site')
-
+// const siteRouter = require('./routes/site')
+app.get('/',(req,res)=>{
+  res.send('Hello world')
+})
 // app.use('/admin/product',productRouter)
 // app.use('/admin/producttype',producttypeRouter)
 // app.use('/admin/category',categoryRouter)
 // app.use('/admin/order',orderRouter)
 // app.use('/cart',cartRouter)
 // app.use('/user',userRouter)
-app.use('/',siteRouter)
+// app.use('/',siteRouter)
 // router(app)
 
 app.listen(process.env.PORT || port, () => {
