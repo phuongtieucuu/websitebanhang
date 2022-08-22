@@ -53,7 +53,7 @@ mongoose
 // const orderRouter = require('./routes/order')
 // const cartRouter = require('./routes/cart')
 // const userRouter = require('./routes/user')
-// const siteRouter = require('./routes/site')
+const siteRouter = require('./routes/site')
 
 // app.use('/admin/product',productRouter)
 // app.use('/admin/producttype',producttypeRouter)
@@ -61,8 +61,8 @@ mongoose
 // app.use('/admin/order',orderRouter)
 // app.use('/cart',cartRouter)
 // app.use('/user',userRouter)
-// app.use('/',siteRouter)
-router(app)
+app.use('/',siteRouter)
+// router(app)
 
 app.listen(process.env.PORT || port, () => {
   console.log(`Example app listening on port ${port}`)
