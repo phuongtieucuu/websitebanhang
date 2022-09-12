@@ -20,7 +20,7 @@ mongoose
 .connect('mongodb+srv://websitebanhang:huy12345@websitebanhang.73phjjw.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB Connected....'))
 .catch((err) => console.log(err))
-app.use(morgan('combined'))
+// app.use(morgan('combined'))
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json());
